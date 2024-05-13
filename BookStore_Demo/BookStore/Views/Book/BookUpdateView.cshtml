@@ -1,0 +1,78 @@
+﻿@model DBLibrary.Books
+
+@{
+    ViewBag.Title = "BookUpdateView";
+}
+
+
+@section css{
+    <link rel="stylesheet" href="~/CSS/InfoInput.css">
+}
+
+@using (Html.BeginForm("BookUpdate", "Book", FormMethod.Post))
+{
+
+    <ul>
+        <li>
+            <label for="Title">
+                <span>@Html.DisplayNameFor(model => model.Title)</span>
+                <input type="text" name="Title" value="@Html.DisplayFor(model => model.Title)" />
+            </label>
+        </li>
+        <li>
+            <label for="AuthorName">
+                <span>@Html.DisplayNameFor(model => model.AuthorName)</span>
+                <input type="text" name="AuthorName" value="@Html.DisplayFor(model => model.AuthorName)" />
+            </label>
+        </li>
+        <li>
+            <label for="Price">
+                <span>@Html.DisplayNameFor(model => model.Price)</span>
+                <input type="text" name="Price" value="@Html.DisplayFor(model => model.Price)" />
+            </label>
+        </li>
+        <li>
+            <label for="BookTypeID">
+                <span>@Html.DisplayNameFor(model => model.BookTypeID)</span>
+                <input type="text" name="BookTypeID" value="@Html.DisplayFor(model => model.BookTypeID)" />
+            </label>
+        </li>
+        <li>
+            <label for="BookTag">
+                <span>@Html.DisplayNameFor(model => model.BookTag)</span>
+                <input type="text" name="BookTag" value="@Html.DisplayFor(model => model.BookTag)" />
+            </label>
+        </li>
+    </ul>
+    <button type="submit" value="Update">
+        <span>提交</span>
+    </button>
+}
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input').each(function () {
+                if ($(this).val() != null && $(this).val() != "")
+                    $(this).parent().find('span').addClass('havevalue')
+                else
+                    $(this).parent().find('span').removeClass('havevalue')
+            })
+            $(document).click(function (e) {
+
+                var _con = $('input'); // 设置目标区域
+                var i = 0;
+                if (!_con.is(e.target) && _con.has(e.target).length === 0) {
+                    $('input').each(function () {
+                        if ($(this).val() != null && $(this).val() != "")
+                            $(this).parent().find('span').addClass('havevalue')
+                        else
+                            $(this).parent().find('span').removeClass('havevalue')
+                    })
+                }
+            })
+            $('input').click(function (e) {
+                $(this).parent().find('span').addClass('havevalue')
+            })
+        })
+    </script>
+}
